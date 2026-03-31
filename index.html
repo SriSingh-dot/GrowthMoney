@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowthMoney</title>
+<link rel="icon" type="image/png" href="money.png">
+
+
+
+
+
+
+<style>
+@font-face {
+  font-family: 'Bubble';
+  src: url('BubbleShine.otf');}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;}
+body{
+  height:100vh;
+  font-family: 'Bubble', sans-serif;
+  background: linear-gradient(rgba(201, 179, 119, 0.7), rgba(224, 202, 142, 0.7)), url('g.jpg') no-repeat center center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;}
+.container{
+  width:90%;
+  height:80vh;
+  border: 6px solid #50632f; 
+  border-radius:25px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:50px;
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position:relative;}
+.text{
+  z-index:2;}
+.text h1{
+  font-size:180px;
+  line-height:1;
+  color:#576138;
+  letter-spacing:2px;
+  text-shadow: 6px 6px 0px #be9c62;}
+.floating-img{
+  position:absolute;
+  left:62%; 
+  top:50%;
+  transform:translateY(-50%);
+  width:360px;
+  height:auto;
+  z-index:1;
+  pointer-events:none;
+  filter: drop-shadow(0px 15px 25px rgba(120,90,60,0.3));
+}
+@media(max-width:900px){
+  .container{
+    justify-content:center;
+  }
+  .text h1{
+    font-size:100px;
+    text-align:center;}
+  .floating-img{
+    position:static;
+    transform:none;
+    width:240px;
+    margin-top:20px;}
+}
+.begin-btn{
+  margin-top:40px;
+  padding:18px 45px;
+  font-size:28px;
+  font-family:'Bubble', sans-serif;
+  color:#50632f;
+  background:transparent;
+  border:3px solid #50632f;
+  border-radius:40px;
+  cursor:pointer;
+  transition:all 0.3s ease;}
+.begin-btn:hover{
+  background:#92a86a;
+  color:#7a6446;
+  transform:scale(1.08);
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+</head><body>
+<div class="container">
+  <div class="text">
+    <h1>Growth<br>Money
+    </h1>
+<button onclick="window.location.href='plan.html'" class="begin-btn">
+  Let's Begin
+</button>
+  </div>
+  <img src="g.png" class="floating-img">
+</div>
+
+
+
+
+</body>
+</html>
