@@ -85,6 +85,40 @@ button:hover{
 ::-webkit-scrollbar-thumb:hover{
   background: linear-gradient(#3f531d, #7a6a4f); 
   }
+  #emi{
+  font-size:28px;
+  font-weight:bold;
+  color:#3f531d;
+}
+@keyframes spinCute{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }}
+#loaderImg{
+  animation: spinCute 1s linear infinite;}
+.top-btn{
+  position:absolute;
+  top:25px;
+  left:25px;
+  width:auto;
+  padding:10px 20px;
+  font-size:18px;
+}
+.money {
+  position: fixed;
+  top: -50px;
+  width: 40px;
+  pointer-events: none;
+  animation: fall linear forwards;
+  z-index: 9999;}
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;  }
+}
 </style></head>
 
 
@@ -98,6 +132,7 @@ button:hover{
 
 
 <body>
+<button onclick="goIndex()" class="top-btn">Index</button>
 <h1 class="title">
   EMI Calculator 
 <img src="pookie.png" style="width:100px; height:100px; object-fit:contain; vertical-align:middle; margin-left:15px;">
@@ -110,11 +145,15 @@ button:hover{
 <label>Loan Tenure (Months) <span class="value" id="timeValue">12</span></label>
 <input type="range" id="time" min="6" max="120" value="12">
 <button onclick="calculateEMI()">Calculate EMI</button>
+<div id="loader" style="display:none; text-align:center; margin-top:20px;">
+  <img src="cute.png" id="loaderImg" style="width:100px;">
+</div>
 <div class="result" id="result">
   <p>Monthly EMI: ₹<span id="emi">0</span></p>
   <p>Principal Amount: ₹<span id="principal">0</span></p>
   <p>Total Interest: ₹<span id="interest">0</span></p>
-  <p>Total Amount: ₹<span id="total">0</span></p></div></div>
+  <p>Total Amount: ₹<span id="total">0</span></p></div>
+<button onclick="startMoneyRain()">Money Rain </button></div>
 
 
 
@@ -129,6 +168,9 @@ button:hover{
 
 
 <script>
+function goIndex(){
+  window.location.href = "attach.html";
+}
 let loan = document.getElementById("loan");
 let rate = document.getElementById("rate");
 let time = document.getElementById("time");
@@ -136,21 +178,40 @@ loan.oninput = () => document.getElementById("loanValue").innerText = loan.value
 rate.oninput = () => document.getElementById("rateValue").innerText = rate.value;
 time.oninput = () => document.getElementById("timeValue").innerText = time.value;
 function calculateEMI(){
-  let P = Number(loan.value);
-  let R = Number(rate.value) / 12 / 100;
-  let N = Number(time.value);
-  let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
-  let total = EMI * N;
-  let interest = total - P;
-  document.getElementById("emi").innerText = EMI.toFixed(2);
-  document.getElementById("principal").innerText = P;
-  document.getElementById("interest").innerText = interest.toFixed(2);
-  document.getElementById("total").innerText = total.toFixed(2);
+  let loader = document.getElementById("loader");
   let resultBox = document.getElementById("result");
-  resultBox.style.transform = "scale(1.05)";
+  loader.style.display = "block";
+  resultBox.style.display = "none";
   setTimeout(() => {
-    resultBox.style.transform = "scale(1)";
-  }, 200);}
+    let P = Number(loan.value);
+    let R = Number(rate.value) / 12 / 100;
+    let N = Number(time.value);
+    let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+    let total = EMI * N;
+    let interest = total - P;
+    document.getElementById("emi").innerText = EMI.toFixed(2);
+    document.getElementById("principal").innerText = P;
+    document.getElementById("interest").innerText = interest.toFixed(2);
+    document.getElementById("total").innerText = total.toFixed(2);
+    loader.style.display = "none";
+    resultBox.style.display = "block";
+    resultBox.style.transform = "scale(1.05)";
+    setTimeout(() => {
+      resultBox.style.transform = "scale(1)";
+    }, 200);
+  }, 2000); }
+  function startMoneyRain(){
+  for(let i = 0; i < 25; i++){
+    let money = document.createElement("img");
+    money.src = "money1.png";
+    money.classList.add("money");
+    money.style.left = Math.random() * window.innerWidth + "px";
+    money.style.width = (30 + Math.random() * 40) + "px";
+    money.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(money);
+    setTimeout(() => {
+      money.remove();
+    }, 5000);}}
 </script>
 
 

@@ -227,6 +227,9 @@ body.glitch-full::after {
     transform: translate(0,0);
     background: rgba(87,97,57,0.2);}
 }
+.index-btn{
+  left:150px;
+}
 </style>
 </head>
 
@@ -252,6 +255,7 @@ body.glitch-full::after {
 </div>
 <button onclick="goBack()">Back</button>
 <h1 class="title">Your Records</h1>
+<button onclick="goToAttach()" class="index-btn">Index</button>
 <div class="records-container" id="recordsContainer"></div>
 
 
@@ -314,6 +318,9 @@ function goBack(){
   window.location.href = "budget.html";}
   if(records.length === 0){
   container.innerHTML = "<h2 style='text-align:center;'>No records yet</h2>";}
+  function goToAttach(){
+  window.location.href = "attach.html";
+}
 </script>
 
 
