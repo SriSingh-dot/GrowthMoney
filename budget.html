@@ -97,6 +97,27 @@ body::-webkit-scrollbar-thumb{
   border-radius:10px;}
 body::-webkit-scrollbar-thumb:hover{
   background:#3f531d;}
+#cuteAnim{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 120px;
+  z-index: 999;
+  pointer-events: none;}
+.showCute{
+  animation: spinZoom 3s ease forwards;
+}
+@keyframes spinZoom{
+  0%{
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;  }
+  30%{
+    transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+    opacity: 1;  }
+  100%{
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+    opacity: 1;  }}
 </style>
 </head>
 
@@ -129,12 +150,15 @@ body::-webkit-scrollbar-thumb:hover{
     <label>Savings-Goal:</label>
     <input type="number" id="goal" placeholder="Your target savings"></div>
   <button id="calculate">Calculate Summary</button>
+  <button onclick="resetAll()">Reset</button>
+  <button onclick="goToRecords()">Records</button>
   <div class="section summary">
     <p id="total-income">TotalIncome: ₹0</p>
     <p id="total-expenses">TotalExpenses: ₹0</p>
     <p id="remaining">Remaining: ₹0</p>
+    <p id="goal-status">Saving Goal Reached: No</p>
     <p id="progress"></p>  </div></div>
-
+<img id="cuteAnim" src="cute.png">
 
 
 
@@ -148,20 +172,57 @@ btn.addEventListener("click", function(){
   const expenses = Array.from(document.querySelectorAll(".expense")).reduce((sum, input) => sum + Number(input.value || 0), 0);
   const goal = Number(document.getElementById("goal").value) || 0;
   const remaining = income - expenses;
+  let goalStatus = "No";
   document.getElementById("total-income").innerText = "Total Income: ₹" + income;
   document.getElementById("total-expenses").innerText = "Total Expenses: ₹" + expenses;
   document.getElementById("remaining").innerText = "Remaining: ₹" + remaining;
-  if(goal > 0){
-    const percent = Math.min(100, Math.round((remaining/goal)*100));
-    document.getElementById("progress").innerText = "Savings Goal Progress: " + percent + "%";
-    if(percent >= 100){
-      createStars(); }}});
+if(goal > 0){
+  let needed = goal - remaining;
+  let progressText = document.getElementById("progress");
+  if(needed <= 0){
+    progressText.innerText = "₹0 more needed";
+    progressText.style.color = "green";
+    goalStatus = "Yes";  
+  } else {
+    progressText.innerText = "₹" + needed + " more needed";
+    progressText.style.color = "#b23a3a";
+  }
+}
+document.getElementById("goal-status").innerText = "Saving Goal Reached: " + goalStatus;
+let record = {
+  income: income,
+  expenses: expenses,
+  remaining: remaining,
+  goal: goal,
+  status: goalStatus,
+  date: new Date().toLocaleDateString()
+};
+let records = JSON.parse(localStorage.getItem("records")) || [];
+if(
+  records.length === 0 || 
+  JSON.stringify(records[records.length - 1]) !== JSON.stringify(record)){
+  records.push(record);}
+localStorage.setItem("records", JSON.stringify(records));
+});
+function resetAll(){
+  document.querySelectorAll("input").forEach(input => input.value = "");
+  document.getElementById("total-income").innerText = "Total Income: ₹0";
+  document.getElementById("total-expenses").innerText = "Total Expenses: ₹0";
+  document.getElementById("remaining").innerText = "Remaining: ₹0";
+  document.getElementById("progress").innerText = "";
+  document.getElementById("progress").style.color = "#576139";
+  document.getElementById("goal-status").innerText = "Saving Goal Reached: No";
+}
+  function goToRecords(){
+  let img = document.getElementById("cuteAnim");
+  img.classList.remove("showCute"); // reset if already running
+  void img.offsetWidth;             // force reflow (restart animation)
+  img.classList.add("showCute");
+  setTimeout(() => {
+    window.location.href = "plan.html";
+  }, 3000);}
+  
+  
 </script>
-
-
-
-
-
-
 </body>
 </html>
