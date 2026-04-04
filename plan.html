@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Records</title>
+<link rel="icon" type="image/png" href="money.png">
+
+
+
+
+
+
+
+
+
 
 
 
@@ -138,7 +148,7 @@ button:hover{
   animation: shake 0.4s;}
 .error{
   color:#b23a3a !important;}
-
+  
 ::-webkit-scrollbar{
   width:12px;}
 ::-webkit-scrollbar-track{
@@ -151,6 +161,72 @@ button:hover{
 ::-webkit-scrollbar-thumb:hover{
   background: linear-gradient(#3f531d, #7a6a4f); 
   }
+body.glitch-full {
+  position: relative;
+  overflow: hidden;
+}
+body.glitch-full::before,
+body.glitch-full::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+body.glitch-full::before {
+  animation: brutalGlitchFull 2s infinite linear;}
+
+body.glitch-full::after {
+  animation: brutalGlitchFull 1.8s infinite linear reverse;
+}
+@keyframes brutalGlitchFull {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+    transform: translate(0,0);
+    background: rgba(165,144,109,0.2);}
+  10% {
+    clip: rect(20px, 9999px, 80px, 0);
+    transform: translate(-20px, 10px) skew(-3deg);
+    background: rgba(87,97,57,0.2);}
+  20% {
+    clip: rect(50px, 9999px, 150px, 0);
+    transform: translate(25px, -15px) skew(2deg);
+    background: rgba(60,102,60,0.2);}
+  30% {
+    clip: rect(10px, 9999px, 120px, 0);
+    transform: translate(-15px, 20px) skew(-2deg);
+    background: rgba(170,135,80,0.2);}
+  40% {
+    clip: rect(60px, 9999px, 200px, 0);
+    transform: translate(10px, -25px) skew(3deg);
+    background: rgba(165,144,109,0.3);}
+  50% {
+    clip: rect(30px, 9999px, 100px, 0);
+    transform: translate(-20px, 15px) skew(-3deg);
+    background: rgba(87,97,57,0.3);}
+  60% {
+    clip: rect(80px, 9999px, 180px, 0);
+    transform: translate(15px, -10px) skew(2deg);
+    background: rgba(60,102,60,0.3);}
+  70% {
+    clip: rect(40px, 9999px, 120px, 0);
+    transform: translate(-25px, 5px) skew(-2deg);
+    background: rgba(170,135,80,0.3);}
+  80% {
+    clip: rect(0, 9999px, 200px, 0);
+    transform: translate(20px, -20px) skew(3deg);
+    background: rgba(165,144,109,0.4);}
+  90% {
+    clip: rect(50px, 9999px, 150px, 0);
+    transform: translate(-15px, 10px) skew(-3deg);
+    background: rgba(87,97,57,0.4);}
+  100% {
+    clip: rect(0, 9999px, 9999px, 0);
+    transform: translate(0,0);
+    background: rgba(87,97,57,0.2);}
+}
 </style>
 </head>
 
@@ -188,24 +264,35 @@ button:hover{
 
 
 <script>
- function checkPassword(){
+function checkPassword() {
   let input = document.getElementById("passwordInput").value;
-  let box = document.querySelector(".login-box");
+  let box = document.querySelector(".login-box"); 
+  let screen = document.getElementById("loginScreen");
   let title = document.getElementById("loginTitle");
   let savedPassword = localStorage.getItem("appPassword");
-  if(!savedPassword){
-    if(input){
+  let recordsContainer = document.getElementById("recordsContainer");
+    if (!savedPassword) {
+    if (input) {
       localStorage.setItem("appPassword", input);
-      document.getElementById("loginScreen").style.display = "none";}
+      screen.style.display = "none";
+      recordsContainer.style.opacity = 1; }
+      } else {
+    if (input === savedPassword) {
+      box.style.display = "none";
+      recordsContainer.style.opacity = 1;
+     screen.classList.add("glitch-screen");
+document.body.classList.add("glitch-full");
+setTimeout(() => {
+  screen.classList.remove("glitch-screen"); 
+  document.body.classList.remove("glitch-full"); 
+  screen.style.display = "none"; 
+}, 2500);
   } else {
-    if(input === savedPassword){
-      document.getElementById("loginScreen").style.display = "none";
-    } else {
       box.classList.remove("shake");
       void box.offsetWidth;
       box.classList.add("shake");
-      title.classList.add("error");
-      document.getElementById("passwordInput").value = "";    }}}
+      title.classList.add("error"); 
+      document.getElementById("passwordInput").value = "";}}}
 let records = JSON.parse(localStorage.getItem("records")) || [];
 let container = document.getElementById("recordsContainer");
 records.forEach(r => {
@@ -221,14 +308,12 @@ records.forEach(r => {
     <div class="line"><span>Remaining</span><span>₹${r.remaining}</span></div>
     <div class="line"><span>Goal</span><span>₹${r.goal}</span></div>
     <div class="status ${r.status === "Yes" ? "yes" : "no"}">
-      ${r.status === "Yes" ? "Goal Reached" : "Not Reached"}
-   </div>`;
-  container.appendChild(div);});
+      ${r.status === "Yes" ? "Goal Reached" : "Not Reached"}</div>`;
+container.appendChild(div);});
 function goBack(){
   window.location.href = "budget.html";}
   if(records.length === 0){
-  container.innerHTML = "<h2 style='text-align:center;'>No records yet</h2>";
-}
+  container.innerHTML = "<h2 style='text-align:center;'>No records yet</h2>";}
 </script>
 
 
