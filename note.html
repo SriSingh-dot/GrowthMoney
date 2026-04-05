@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Note - GrowthMoney</title>
+<link rel="icon" type="image/png" href="money.png">
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+
+<style>
+@font-face {
+  font-family: 'Bubble';
+  src: url('BubbleShine.otf');
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;}
+body{
+  font-family:'Bubble', sans-serif;
+  min-height:100vh;
+  background: linear-gradient(rgba(136, 121, 81, 0.7), rgba(197, 177, 121, 0.7)), url('g.jpg') no-repeat center center/cover;
+  color:#576139;
+  display:flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items:center;
+  padding:50px 20px;
+}
+.container{
+  width:90%;
+  max-width:1000px;
+  background: rgba(197, 191, 159, 0.45);
+  backdrop-filter: blur(8px);
+  border: 6px solid #576139;
+  border-radius:25px;
+  padding:40px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.heading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:30px;
+  margin-bottom:40px;}
+.heading img{
+  width:150px;
+  height:150px;
+  border-radius:15px;}
+.heading h1{
+  font-size:90px;
+  text-shadow: 4px 4px 0 #a5906d;
+  color:#3f531d;
+}
+.note-box{
+  width:100%;
+  background:#f5f0d6;
+  border:4px solid #576139;
+  border-radius:20px;
+  padding:30px;
+  color:#3f531d;
+  margin-bottom:30px;}
+.note-box h2{
+  font-size:40px;
+  margin-bottom:10px;}
+.note-box p{
+  font-size:30px;
+  line-height:1.6;}
+.note-box a{
+  color:#576139;
+  text-decoration:none;}
+.note-box a:visited{
+  color:#8b6b3f;}
+.note-box a:hover{
+  text-decoration:underline;
+}
+.index-btn{
+  margin-top:20px;
+  padding:14px 40px;
+  font-family:'Bubble', sans-serif;
+  font-size:24px;
+  color:#395228;
+  background:transparent;
+  border:3px solid #576139;
+  border-radius:30px;
+  cursor:pointer;
+  letter-spacing:1px;
+  transition:all 0.3s ease;}
+.index-btn:hover{
+  background:#b4d380;
+  color:#a7904b;
+  transform:scale(1.05);}
+body::-webkit-scrollbar{
+  width:12px;}
+body::-webkit-scrollbar-track{
+  background:#d8cfa0;
+  border-radius:10px;}
+body::-webkit-scrollbar-thumb{
+  background:#576139;
+  border-radius:10px;
+  border:2px solid #d8cfa0;}
+body::-webkit-scrollbar-thumb:hover{
+  background:#3f531d;
+}
+.money {
+  position: fixed;
+  top: -50px;
+  width: 40px;
+  pointer-events: none;
+  animation: fall linear forwards;
+  z-index: 9999;}
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;}
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;}}
+</style>
+</head>
+
+
+
+
+
+
+<body>
+<div class="heading">
+  <img src="imi.png">
+  <h1>NOTE</h1>  </div>
+<div class="container">
+  <div class="note-box">
+    <h2>About Website</h2>
+    <p>The content layout of emi.html is inspired from "Groww".<br>
+    The calculations are 100 percent correct (well i am good at math as an asian)<br>
+  The help.html contains lines from my 9th grade book which i learned years ago (HHEHEHEH)</p>
+  </div>
+  <div class="note-box">
+    <h2>Thank You</h2>
+    <p>I really appreciate you checking out my website. If you want to see more of my work, check out the following:-<br>
+    1. <a href="https://srisingh-dot.github.io/Arirang/">BTS "ARIRANG" Fan Page </a><br>
+  2. <a href="https://srisingh-dot.github.io/MoodTrack/">MoodTrack- Mood tracker (a little error)</a><br>
+  3. <a href="https://srisingh-dot.github.io/DarkShop/">DarkShop- A magical dark power shop </a></p>
+  </div></div>
+
+
+
+
+<div style="display:flex; gap:20px; margin-top:20px;">
+  <button class="index-btn" onclick="window.location.href='attach.html'">Index</button>
+  <button class="index-btn" onclick="startMoneyRain()">Money Rain</button></div>
+
+
+
+
+
+
+
+
+
+
+<script>
+function startMoneyRain(){
+  for(let i = 0; i < 25; i++){
+    let money = document.createElement("img");
+    money.src = "money1.png";
+    money.classList.add("money");
+    money.style.left = Math.random() * window.innerWidth + "px";
+    money.style.width = (30 + Math.random() * 40) + "px";
+    money.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(money);
+    setTimeout(() => {
+      money.remove();
+    }, 5000);}}
+</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
