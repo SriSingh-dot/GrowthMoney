@@ -3,15 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GrowthMoney - Investment</title>
+<title>Help- GrowthMoney</title>
 <link rel="icon" type="image/png" href="money.png">
-
-
-
-
-
-
-
+<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
 
 
 
@@ -20,8 +14,7 @@
 <style>
 @font-face {
   font-family: 'Bubble';
-  src: url('BubbleShine.otf');
-}
+  src: url('BubbleShine.otf');}
 *{
   margin:0;
   padding:0;
@@ -34,6 +27,8 @@ body{
   padding:50px 20px;
   display:flex;
   justify-content:center;
+  flex-direction: column;
+  align-items: center;
 }
 .container{
   width:90%;
@@ -43,7 +38,8 @@ body{
   border: 6px solid #576139;
   border-radius:25px;
   padding:40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);}
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;}
 h1{
   text-align:center;
   font-size:90px;
@@ -58,7 +54,11 @@ h1{
   padding:20px;
   gap:20px;
   font-size:22px;
-  flex-direction: column;}
+  flex-direction: column;
+  margin-bottom:40px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  border: 4px solid #576139;}
 .invest-header{
   display:flex;
   align-items:center;
@@ -78,8 +78,85 @@ h1{
 .invest-content{
   color:#3f531d;
   line-height:1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;}
+.invest-content p{
+  margin:0;
+  font-family: 'Allura', cursive;
+  font-size: 28px}
+.loan-image{
+  background: url('loan.png') center/cover no-repeat;
 }
-</style>
+body::-webkit-scrollbar {
+  width: 12px;}
+body::-webkit-scrollbar-track {
+  background: #d8cfa0;
+  border-radius: 10px;}
+body::-webkit-scrollbar-thumb {
+  background: #576139;
+  border-radius: 10px;
+  border: 2px solid #d8cfa0;}
+body::-webkit-scrollbar-thumb:hover {
+  background: #3f531d;
+}
+.menu-btn{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  background: #576139; 
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #c9b376;
+  font-size: 24px;
+  font-weight: bold;}
+.side-menu{
+  position: fixed;
+  top: 0;
+  left: -20%; 
+  width: 20%; 
+  height: 100%;
+  background: #5b692f;
+  color: #b99a6c;
+  display: flex;
+  flex-direction: column;
+  padding: 100px 20px 20px 20px; 
+  gap: 30px;
+  transition: left 0.3s ease;
+  z-index: 1000;}
+.side-menu a{
+  color: #d4b182;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 0.3s;}
+.side-menu a:hover{
+  color: #b8da7e;}
+.side-menu.show{
+  left: 0; }
+.side-menu-image {
+    margin-top: auto;        
+    display: flex;           
+    justify-content: center; 
+    padding-bottom: 20px;}
+.side-menu-image img {
+    width: 170px;             
+    height: auto;
+    border-radius: 10px;
+}
+.invest-content a:link {
+    color: #576139; 
+    text-decoration: underline;}
+.invest-content a:visited {
+    color: #89a129;}  
+.invest-content a:hover {
+    color: #3f531d;
+}
+</style></head>
 
 
 
@@ -89,16 +166,54 @@ h1{
 
 
 
-</head>
+
+
+
+
+
+
+
+
+
+
 <Body>
+<button class="menu-btn" onclick="toggleMenu()">☰</button><!--is not in olive color in png so got it from google-->
+<div class="side-menu" id="sideMenu">
+  <a href="index.html">Home</a>
+  <a href="attach.html">Index</a>
+  <a href="note.html">Note</a>
+  <div class="side-menu-image">
+    <img src="omo.png" alt="Omo Logo"></div></div>
 <div class="container">
   <h1>GrowthMoney</h1>
+
+
+
+
   <div class="invest-box">
     <div class="invest-header">
       <div class="invest-image"></div>
-      <div class="invest-title">Investment</div></div>
+      <div class="invest-title">Investment</div>
+    </div>
     <div class="invest-content">
-      <p>
+      <p>In easy words, investment is basically putting in your own money for something that gives you higher outcome in the future. For example you yourself is an investment of your parents. Your parents educate you, raise you and even spend so much money on you to make your future secure. That secure future guarantees that all the investment was worth it and for sure you take care of your parents with that high paying job. <br>If you want to learn about investment and how to invest in stocks, bonds, mutual funds, real estate or for saving account, the given below links to videos (YouTube) will help you:-<br>1. <a href="https://www.youtube.com/watch?v=8Ij7A1VCB7I"> How to invest in stocks (beginner).</a><br>2. <a href="https://www.youtube.com/watch?v=qIw-yFC-HNU">The Basics of Investing (Stocks, Bonds, Mutual Funds, and Types of Interest).</a><br>
+      3. <a href="https://www.youtube.com/watch?v=i-To1GILOhA">Every type of investment explained for beginners.</a><br>4. <a href="https://www.youtube.com/watch?v=-C_5hzJCHaY">How to Invest As a Teen With $0 (Millionaire in Your 20's)</a></p>
+    </div></div>
+
+
+
+
+  <div class="invest-box">
+    <div class="invest-header">
+      <div class="invest-image loan-image"></div>
+      <div class="invest-title">Loan</div>
+    </div>
+    <div class="invest-content">
+      <p>Loan is basically borrowing money from a person or a financial institute with a promise to pay it back with extra pay as an interest.Well, loan does not always mean that a person is broke. People take loan for investment in business or education which gives higher outcome, pay for medical emergencies or to buy something expensives when you do not have suffiecient amount. To know or understand all components of loans and how to get it, check out the below given videos:- <br>1. <a href="https://www.youtube.com/watch?v=L7zXxgEZ1pg">Loan Basics: Understanding the different kinds of loans</a><br>
+        2. <a href="https://www.youtube.com/watch?v=JvEOX9DcZn8">How Principal & Interest Actually Work in Loan Payments</a><br>
+        3. <a href="https://www.youtube.com/watch?v=x-QGUtKKwNo">The Pros and Cons of Personal Loans</a><br>
+        4. <a href="https://www.youtube.com/watch?v=ccjn4tXifFA">
+How The Rich Live On Loans</a>
       </p>
     </div></div></div>
 
@@ -106,5 +221,66 @@ h1{
 
 
 
+<script>
+function toggleMenu(){
+  const menu = document.getElementById('sideMenu');
+  menu.classList.toggle('show');
+}
+</script>
+
+
+
+
+
+
+
 </Body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
