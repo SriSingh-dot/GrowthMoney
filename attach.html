@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Index- GrowthMoney</title>
+<link rel="icon" type="image/png" href="money.png">
+
+
+
+
+
+
+<style>
+@font-face {
+  font-family: 'Bubble';
+  src: url('BubbleShine.otf');
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;}
+body{
+  font-family:'Bubble', sans-serif;
+  background:#576139;
+  padding:25px;
+}
+.wrapper{
+  background: linear-gradient(rgba(136,121,81,0.7), rgba(197,177,121,0.7)), url('g.jpg');
+  min-height:100vh;
+  padding:40px;}
+.container{
+  max-width:700px;
+  margin:auto;
+  background:#f5e6c8;
+  padding:35px;
+  border-radius:20px;
+  border:6px solid #576139;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+.title{
+  text-align:center;
+  font-size:65px;
+  color:#576139;
+  margin-bottom:30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;}
+.title-img{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+  transition:0.3s;}
+.title-img:hover{
+  transform:rotate(10deg) scale(1.1);
+}
+.section{
+  padding:20px 0;
+  border-bottom:2px solid #576139;}
+.section:last-child{
+  border-bottom:none;}
+.section button{
+  padding:14px 30px;
+  font-size:24px;
+  font-family:'Bubble';
+  border-radius:22px;
+  border:2px solid #576139;
+  background: transparent;
+  color:#576139;
+  cursor:pointer;
+  transition:0.3s;}
+.section button:hover{
+  background:#d3ee81;
+  transform:scale(1.05);}
+.section:hover{
+  background: rgba(87,97,57,0.1);
+  border-radius:10px;}
+.desc{
+  margin-top:12px;
+  font-size:19px;
+  color:#576139;}
+@keyframes spinCute{
+  0%{ transform: rotate(0deg); }
+  100%{ transform: rotate(360deg); }
+}
+#loaderImg{
+  animation: spinCute 1s linear infinite;}
+#loader{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index:10000;
+}
+.money {
+  position: fixed;
+  top: -50px;
+  width: 40px;
+  pointer-events: none;
+  animation: fall linear forwards;
+  z-index: 9999;}
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.8;}}
+</style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<div class="wrapper">
+    <div id="loader" style="display:none;">
+  <img src="cute.png" id="loaderImg" style="width:120px;">
+</div>
+<div class="container">
+<h1 class="title">Index
+  <img src="cuddle.png" class="title-img">
+</h1>
+<p style="text-align:center; color:#576139; font-size:18px; margin-bottom:20px;">
+  Select a page as per your interest.</p>
+    <div class="section">
+      <button onclick="goEMI()">EMI Calculator</button>
+      <p class="desc">Calculate your monthly EMI, interest, and total loan amount easily.</p></div>
+    <div class="section">
+      <button onclick="goRecords()">Budget Tracker</button>
+      <p class="desc">Track your income, expenses, and savings in one place.</p></div>
+    <div class="section">
+      <button onclick="goHelp()">Financial Help</button>
+      <p class="desc">Get simple guidance and tips to manage your money better.</p></div>
+    <div class="section">
+  <button onclick="startMoneyRain()">Money Rain</button>
+  <p class="desc">HEHHEHHEHEHE FUN!!!.</p>
+</div></div></div>
+
+
+
+
+
+
+
+
+
+
+<script>
+function goEMI(){
+  document.getElementById("loader").style.display = "block";
+  setTimeout(() => {
+    window.location.href = "emi.html";
+  }, 1500);}
+function goRecords(){
+  document.getElementById("loader").style.display = "block";
+  setTimeout(() => {
+    window.location.href = "budget.html";
+  }, 1500);}
+function goHelp(){
+  document.getElementById("loader").style.display = "block";
+  setTimeout(() => {
+    window.location.href = "help.html";
+  }, 1500);}
+function startMoneyRain(){
+  for(let i = 0; i < 25; i++){
+    let money = document.createElement("img");
+    money.src = "money1.png";
+    money.classList.add("money");
+    money.style.left = Math.random() * window.innerWidth + "px";
+    money.style.width = (30 + Math.random() * 40) + "px";
+    money.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(money);
+    setTimeout(() => {
+      money.remove();
+    }, 5000);}}
+</script>
+
+
+</body></html>
